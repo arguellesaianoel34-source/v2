@@ -1,12 +1,12 @@
 import { Router } from "express";
-import healthRouter from "./health";
-import authRouter from "./auth";
-import contactsRouter from "./contacts";
-import testimonialsRouter from "./testimonials";
-import commentsRouter from "./comments";
-import statsRouter from "./stats";
-import contentRouter from "./content";
-import emailRouter from "./email";
+import healthRouter from "./health.js";
+import authRouter from "./auth.js";
+import contactsRouter from "./contacts.js";
+import testimonialsRouter from "./testimonials.js";
+import commentsRouter from "./comments.js";
+import statsRouter from "./stats.js";
+import contentRouter from "./content.js";
+import emailRouter from "./email.js";
 
 const router = Router();
 

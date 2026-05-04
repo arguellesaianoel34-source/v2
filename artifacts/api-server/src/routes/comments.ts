@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { commentsRepo } from "@workspace/db";
-import { requireAuth } from "./auth";
+import { requireAuth } from "./auth.js";
 
 const router = Router();
 

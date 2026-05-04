@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { contactsRepo } from "@workspace/db";
-import { requireAuth } from "./auth";
-import { sendContactNotification } from "../lib/email";
+import { requireAuth } from "./auth.js";
+import { sendContactNotification } from "../lib/email.js";
 
 const router = Router();
 
