@@ -1,20 +1,15 @@
 import express, { type Express } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import pinoHttp from "pino-http";
-import { pinoHttp as pinoHttpNamespace } from "pino-http";
+import { pinoHttp } from "pino-http";
 import type { IncomingMessage, ServerResponse } from "http";
 import router from "./routes";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
 
-const pinoMiddleware = typeof pinoHttp === 'function' 
-  ? pinoHttp 
-  : (pinoHttp as any).default || pinoHttpNamespace;
-
 app.use(
-  pinoMiddleware({
+  pinoHttp({
     logger,
     serializers: {
       req(req: IncomingMessage & { id?: string }) {
