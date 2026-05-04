@@ -5,7 +5,7 @@ import { requireAuth } from "./auth.js";
 const router = Router();
 
 // Test SMTP connection with provided config
-router.post("/email/test-connection", requireAuth, async (req, res) => {
+router.post("/test-connection", requireAuth, async (req, res) => {
   const { smtpHost, smtpPort, smtpUser, smtpPassword } = req.body;
 
   if (!smtpHost || !smtpPort || !smtpUser || !smtpPassword) {
@@ -36,7 +36,7 @@ router.post("/email/test-connection", requireAuth, async (req, res) => {
 });
 
 // Send test email with provided config
-router.post("/email/send-test", requireAuth, async (req, res) => {
+router.post("/send-test", requireAuth, async (req, res) => {
   const { smtpHost, smtpPort, smtpUser, smtpPassword, fromEmail, fromName, to, subject, text } = req.body;
 
   try {

@@ -5,7 +5,7 @@ import { sendContactNotification } from "../lib/email.js";
 
 const router = Router();
 
-router.post("/contacts", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { name, email, phone, company, service, message } = req.body as {
       name: string;
@@ -51,7 +51,7 @@ router.post("/contacts", async (req, res) => {
   }
 });
 
-router.get("/contacts", requireAuth, async (req, res) => {
+router.get("/", requireAuth, async (req, res) => {
   try {
     const page = Number(req.query.page ?? 1);
     const limit = Number(req.query.limit ?? 20);
@@ -71,7 +71,7 @@ router.get("/contacts", requireAuth, async (req, res) => {
   }
 });
 
-router.get("/contacts/:id", requireAuth, async (req, res) => {
+router.get("/:id", requireAuth, async (req, res) => {
   try {
     const id = String(req.params.id);
     const contact = await contactsRepo.getById(id);
@@ -83,7 +83,7 @@ router.get("/contacts/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.patch("/contacts/:id", requireAuth, async (req, res) => {
+router.patch("/:id", requireAuth, async (req, res) => {
   try {
     const id = String(req.params.id);
     const { status } = req.body as { status?: "new" | "read" | "responded" };
@@ -97,7 +97,7 @@ router.patch("/contacts/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.delete("/contacts/:id", requireAuth, async (req, res) => {
+router.delete("/:id", requireAuth, async (req, res) => {
   try {
     const id = String(req.params.id);
     await contactsRepo.delete(id);

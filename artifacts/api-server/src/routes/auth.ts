@@ -43,7 +43,7 @@ function verifyToken(token: string): string | null {
   }
 }
 
-router.post("/auth/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body as {
       username?: string;
@@ -76,12 +76,12 @@ router.post("/auth/login", async (req, res) => {
   }
 });
 
-router.post("/auth/logout", (_req, res) => {
+router.post("/logout", (_req, res) => {
   res.clearCookie(SESSION_COOKIE);
   return res.json({ success: true, message: "Logged out" });
 });
 
-router.get("/auth/me", (req, res) => {
+router.get("/me", (req, res) => {
   const token = req.cookies?.[SESSION_COOKIE] as string | undefined;
   if (!token) {
     return res.json({ authenticated: false });

@@ -4,7 +4,7 @@ import { requireAuth } from "./auth.js";
 
 const router = Router();
 
-router.get("/testimonials", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const testimonials = await testimonialsRepo.list();
     return res.json({ testimonials });
@@ -14,7 +14,7 @@ router.get("/testimonials", async (req, res) => {
   }
 });
 
-router.post("/testimonials", requireAuth, async (req, res) => {
+router.post("/", requireAuth, async (req, res) => {
   try {
     const { clientName, company, content, rating, facebookUrl } = req.body as {
       clientName: string;
@@ -45,7 +45,7 @@ router.post("/testimonials", requireAuth, async (req, res) => {
   }
 });
 
-router.delete("/testimonials/:id", requireAuth, async (req, res) => {
+router.delete("/:id", requireAuth, async (req, res) => {
   try {
     const id = String(req.params.id);
     await testimonialsRepo.delete(id);

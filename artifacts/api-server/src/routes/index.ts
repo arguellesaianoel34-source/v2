@@ -1,6 +1,6 @@
 import { Router } from "express";
 import healthRouter from "./health.js";
-import authRouter from "./auth.js";
+import authRouter, { requireAuth } from "./auth.js";
 import contactsRouter from "./contacts.js";
 import testimonialsRouter from "./testimonials.js";
 import commentsRouter from "./comments.js";
@@ -11,12 +11,12 @@ import emailRouter from "./email.js";
 const router = Router();
 
 router.use(healthRouter);
-router.use(authRouter);
-router.use(contactsRouter);
-router.use(testimonialsRouter);
-router.use(commentsRouter);
-router.use(statsRouter);
-router.use(contentRouter);
-router.use(emailRouter);
+router.use("/auth", authRouter);
+router.use("/contacts", contactsRouter);
+router.use("/testimonials", testimonialsRouter);
+router.use("/comments", commentsRouter);
+router.use("/stats", statsRouter);
+router.use("/content", contentRouter);
+router.use("/email", emailRouter);
 
 export default router;

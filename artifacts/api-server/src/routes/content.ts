@@ -240,7 +240,7 @@ const DEFAULT_CONTENT: Record<string, unknown> = {
 
 const ALLOWED_SECTIONS = ["hero", "services", "results", "tools", "clients", "values", "contact", "team", "faq", "privacy", "terms", "smtp"];
 
-router.get("/content/:section", async (req, res) => {
+router.get("/:section", async (req, res) => {
   try {
     const { section } = req.params;
     if (!ALLOWED_SECTIONS.includes(section)) {
@@ -267,7 +267,7 @@ router.get("/content/:section", async (req, res) => {
   }
 });
 
-router.put("/content/:section", requireAuth, async (req, res) => {
+router.put("/:section", requireAuth, async (req, res) => {
   try {
     const { section } = req.params;
     if (!ALLOWED_SECTIONS.includes(section)) {

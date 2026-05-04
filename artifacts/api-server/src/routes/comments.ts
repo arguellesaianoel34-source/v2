@@ -5,7 +5,7 @@ import { requireAuth } from "./auth.js";
 const router = Router();
 
 // Public route - get approved comments only
-router.get("/comments", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const { items } = await commentsRepo.list({ status: "approved" });
     return res.json({ comments: items });
@@ -16,7 +16,7 @@ router.get("/comments", async (req, res) => {
 });
 
 // Public route - submit a comment (goes to pending status)
-router.post("/comments", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { name, email, content } = req.body as {
       name: string;
@@ -60,7 +60,7 @@ router.post("/comments", async (req, res) => {
 });
 
 // Admin routes - require authentication
-router.get("/admin/comments", requireAuth, async (req, res) => {
+router.get("/admin", requireAuth, async (req, res) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 20;
@@ -74,7 +74,7 @@ router.get("/admin/comments", requireAuth, async (req, res) => {
   }
 });
 
-router.patch("/admin/comments/:id", requireAuth, async (req, res) => {
+router.patch("/admin/:id", requireAuth, async (req, res) => {
   try {
     const id = String(req.params.id);
     const { status } = req.body as { status: "pending" | "approved" | "rejected" };
@@ -95,11 +95,11 @@ router.patch("/admin/comments/:id", requireAuth, async (req, res) => {
   }
 });
 
-router.delete("/admin/comments/:id", requireAuth, async (req, res) => {
+router.delete("/admin/:id", requireAuth, async (req, res) => {
   try {
     const id = String(req.params.id);
     await commentsRepo.delete(id);
-    return res.json({ success: true, message: "Comment deleted" });
+    return res.json({ success: true, message: "Comment deleted successfully" });
   } catch (err) {
     req.log.error({ err }, "Error deleting comment");
     return res.status(500).json({ error: "Internal server error" });

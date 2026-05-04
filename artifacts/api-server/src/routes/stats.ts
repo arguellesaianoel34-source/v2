@@ -4,7 +4,7 @@ import { requireAuth } from "./auth.js";
 
 const router = Router();
 
-router.get("/stats/dashboard", requireAuth, async (req, res) => {
+router.get("/dashboard", requireAuth, async (req, res) => {
   try {
     const [
       totalContacts,
