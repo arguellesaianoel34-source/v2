@@ -3,7 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { pinoHttp } from "pino-http";
 import type { IncomingMessage, ServerResponse } from "http";
-import router from "./routes";
+import router from "./routes/index";
 import { logger } from "./lib/logger";
 
 const app: Express = express();
